@@ -1,6 +1,5 @@
 
 # AI Content Generator
-![image](https://github.com/user-attachments/assets/f52e0b09-dd0a-4a66-9c5d-e89b8ce4481d)
 
 
 This project is an AI-powered content generation tool that leverages Hugging Face's models to create customized content based on user queries. The application is built using Streamlit and LangChain, providing an interactive UI for generating content tailored to different age groups and task types.
