@@ -1,5 +1,5 @@
 import streamlit as st
-from langchain_huggingface import HuggingFaceEndpoint
+from langchain_community.llms import HuggingFaceHub
 from langchain.prompts import PromptTemplate
 from langchain.prompts import FewShotPromptTemplate
 from langchain.prompts.example_selector import LengthBasedExampleSelector
@@ -11,7 +11,7 @@ load_dotenv()
 def getLLMResponse(query, age_option, tasktype_option):
     # Use Hugging Face's Mistral model
     model_name = 'mistralai/Mistral-7B-Instruct-v0.2'
-    llm = HuggingFaceEndpoint(repo_id=model_name, max_length=128, temperature=0.7, token=os.getenv('HUGGINGFACEHUB_API_TOKEN'))
+    llm = HuggingFaceHub(repo_id=model_name, model_kwargs={"max_length": 128, "temperature": 0.7}, huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"))
 
     if age_option == "Kid":  # Silly and Sweet Kid 
         examples = [
@@ -94,7 +94,7 @@ def getLLMResponse(query, age_option, tasktype_option):
 
     print(new_prompt_template.format(template_userInput=query, template_ageoption=age_option, template_tasktype_option=tasktype_option))
 
-    response = llm.invoke(new_prompt_template.format(template_userInput=query, template_ageoption=age_option, template_tasktype_option=tasktype_option))
+    response = llm(new_prompt_template.format(template_userInput=query, template_ageoption=age_option, template_tasktype_option=tasktype_option))
     print(response)
 
     return response
