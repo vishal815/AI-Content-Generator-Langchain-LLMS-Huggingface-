@@ -9,16 +9,16 @@ import os
 load_dotenv()
 
 def getLLMResponse(query, age_option, tasktype_option):
-    # Use Hugging Face's Mistral model
+    # Use a smaller model that works on free HF Inference API
     model_name = 'google/flan-t5-large'
-
+    
     llm = HuggingFaceEndpoint(
-    repo_id=model_name,
-    task="text-generation",
-    max_new_tokens=256,
-    temperature=0.7,
-    huggingfacehub_api_token=os.getenv('HUGGINGFACEHUB_API_TOKEN')
-)
+        repo_id=model_name,
+        task="text2text-generation",   # flan-t5 uses text2text, not text-generation
+        max_new_tokens=256,
+        temperature=0.7,
+        huggingfacehub_api_token=os.getenv('HUGGINGFACEHUB_API_TOKEN')
+    )
     
     if age_option == "Kid":  # Silly and Sweet Kid 
         examples = [
