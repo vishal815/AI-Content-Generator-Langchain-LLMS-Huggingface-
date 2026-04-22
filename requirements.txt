@@ -2,7 +2,7 @@ streamlit==1.36.0
 langchain==0.1.16
 langchain-community==0.0.32
 huggingface_hub==0.23.0
-transformers==4.38.2
+transformers==4.41.2
 python-dotenv==1.0.1
 pydantic==1.10.13
 requests==2.31.0
