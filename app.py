@@ -11,13 +11,15 @@ load_dotenv()
 def getLLMResponse(query, age_option, tasktype_option):
     # Use Hugging Face's Mistral model
     model_name = 'google/flan-t5-large'
-   llm = HuggingFaceEndpoint(
+
+    llm = HuggingFaceEndpoint(
     repo_id=model_name,
     task="text-generation",
     max_new_tokens=256,
     temperature=0.7,
-    huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
+    huggingfacehub_api_token=os.getenv('HUGGINGFACEHUB_API_TOKEN')
 )
+    
     if age_option == "Kid":  # Silly and Sweet Kid 
         examples = [
             {
